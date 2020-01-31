@@ -24,6 +24,7 @@ class MyHomePage extends StatelessWidget {
     'You won that game',
     'You have to read this!',
     'You won this game',
+    'You won another game'
   ];
   MyHomePage({this.title});
   @override
@@ -44,7 +45,7 @@ class MyHomePage extends StatelessWidget {
             leading: CircleAvatar(
               child: Text('Pj'),
             ),
-            subtitle: Text('Another text very long one.'),
+            subtitle: Text('$title'),
           );
         },
       )
