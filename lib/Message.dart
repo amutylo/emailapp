@@ -4,7 +4,7 @@ class Message {
 
   Message(this.subject, this.body);
 
-  Message.from(Map<String, dynamic> json):
+  Message.fromJson(Map<String, dynamic> json):
     subject = json['subject'],
-    body = json['body']
+    body = json['body'];
 }
