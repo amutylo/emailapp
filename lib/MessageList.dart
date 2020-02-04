@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+//import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 
 import 'Message.dart';
 
@@ -15,11 +16,15 @@ class MessageList extends StatefulWidget {
 }
 
 class _MessageListState extends State<MessageList> {
-   var messages = const [];
+   List<Message> messages = const [];
 
   //Load messages from a file in async mode.
   Future loadMessageList() async {
-    String content = await rootBundle.loadString('data/messages.json');
+    // Load content from external json file.
+    //String content = await rootBundle.loadString('data/messages.json');
+    // Request content from external http resourse.
+    http.Response  response = await http.get('http://www.mocky.io/v2/5e39870932000062bfddfb43');
+    String content = response.body;
     List collection = json.decode(content);
     List<Message> _messages =
       collection.map((json) => Message.fromJson(json)).toList();
