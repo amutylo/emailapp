@@ -29,6 +29,7 @@ class _MessageListState extends State<MessageList> {
     loadMessageList();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
 
