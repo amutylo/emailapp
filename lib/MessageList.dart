@@ -16,21 +16,15 @@ class MessageList extends StatefulWidget {
 }
 
 class _MessageListState extends State<MessageList> {
-   List<Message> messages = const [];
+  List<Message> messages = const [];
+  bool  isLoading = true;
 
   //Load messages from a file in async mode.
   Future loadMessageList() async {
-    // Load content from external json file.
-    //String content = await rootBundle.loadString('data/messages.json');
-    // Request content from external http resourse.
-    http.Response  response = await http.get('http://www.mocky.io/v2/5e39870932000062bfddfb43');
-    String content = response.body;
-    List collection = json.decode(content);
-    List<Message> _messages =
-      collection.map((json) => Message.fromJson(json)).toList();
-
+    List<Message> _messages = await Message.browse();
     setState(() {
       messages = _messages;
+      isLoading = false;
     });
   }
 
@@ -46,7 +40,9 @@ class _MessageListState extends State<MessageList> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: ListView.separated(
+      body:  isLoading
+      ? Center(child: CircularProgressIndicator())
+      : ListView.separated(
         itemCount: messages.length,
         separatorBuilder: (context, index) => Divider(),
         itemBuilder: (BuildContext context, int index) {
