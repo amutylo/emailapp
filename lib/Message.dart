@@ -16,7 +16,7 @@ class Message {
     _$MessageFromJson(json);
 
   static Future<List<Message>> browse() async {
-//Load messages from a file in async mode.
+    //Load messages from a file in async mode.
 
     // Load content from external json file.
     //String content = await rootBundle.loadString('data/messages.json');

@@ -1,11 +1,8 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
-//import 'package:flutter/services.dart';
-import 'package:http/http.dart' as http;
 
+import 'ComposeButton.dart';
 import 'Message.dart';
-import 'MessageCompose.dart';
 import 'MessageDetail.dart';
 
 class MessageList extends StatefulWidget {
@@ -28,7 +25,6 @@ class _MessageListState extends State<MessageList> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -61,7 +57,7 @@ class _MessageListState extends State<MessageList> {
                   title: Text(message.subject),
                   isThreeLine: true,
                   leading: CircleAvatar(
-                    child: Text('Pj'),
+                    child: Text('Pa'),
                   ),
                   subtitle: Text(
                     message.body,
@@ -70,9 +66,9 @@ class _MessageListState extends State<MessageList> {
                   ),
                   onTap: () {
                     Navigator.push(context,
-                      MaterialPageRoute(builder: (BuildContext context) {
-                        return MessageDetail();
-                      }
+                      MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                        MessageDetail(message.subject, message.body)
                     ));
                   }
                 );
@@ -81,14 +77,7 @@ class _MessageListState extends State<MessageList> {
           }
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed:  () {
-          Navigator.push(context, MaterialPageRoute(
-            builder: (BuildContext context) => MessageCompose()
-          ));
-        }
-      )
+      floatingActionButton: ComposeButton(),
     );
   }
 }
