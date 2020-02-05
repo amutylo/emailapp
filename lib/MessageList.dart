@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'Message.dart';
+import 'MessageCompose.dart';
 import 'MessageDetail.dart';
 
 class MessageList extends StatefulWidget {
@@ -79,9 +80,15 @@ class _MessageListState extends State<MessageList> {
             );
           }
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed:  () {
+          Navigator.push(context, MaterialPageRoute(
+            builder: (BuildContext context) => MessageCompose()
+          ));
+        }
       )
-      // ? Center(child: CircularProgressIndicator())
-      // :
     );
   }
 }
