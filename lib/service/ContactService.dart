@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 class ContactService {
 
   static String _url = "https://jsonplaceholder.typicode.com/users";
-  static Future browse() async {
+  static Future<List<Contact>> browse({query}) async {
     http.Response response = await http.get(_url);
 
     String content = response.body;

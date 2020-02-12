@@ -1,5 +1,6 @@
 import 'package:emailapp/AppDrawer.dart';
 import 'package:emailapp/ContactManager.dart';
+import 'package:emailapp/ContactSearchDelegate.dart';
 import 'package:emailapp/model/Contact.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +32,13 @@ class ContactsScreen extends StatelessWidget {
               ),
               IconButton(
                 icon: Icon(Icons.search),
-                onPressed: () {},
+                onPressed: () {
+                  
+                  showSearch(
+                    context: context,
+                    delegate: ContactSearchDelegate(manager: manager)
+                  );
+                },
               ),
               Padding(
                 padding: EdgeInsets.only(right: 16)

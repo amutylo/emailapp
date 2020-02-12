@@ -1,8 +1,6 @@
 import 'package:emailapp/App.dart';
 import 'package:flutter/material.dart';
 
-import 'MessageList.dart';
-
 void main() => runApp(EmailApp());
 
 class EmailApp extends StatelessWidget {
