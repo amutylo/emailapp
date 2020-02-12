@@ -29,6 +29,10 @@ class ContactsScreen extends StatelessWidget {
                 ),
                 backgroundColor: Colors.red,
               ),
+              IconButton(
+                icon: Icon(Icons.search),
+                onPressed: () {},
+              ),
               Padding(
                 padding: EdgeInsets.only(right: 16)
               )
