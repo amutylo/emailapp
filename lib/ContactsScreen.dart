@@ -1,4 +1,5 @@
 import 'package:emailapp/AppDrawer.dart';
+import 'package:emailapp/ContactListBuilder.dart';
 import 'package:emailapp/ContactManager.dart';
 import 'package:emailapp/ContactSearchDelegate.dart';
 import 'package:emailapp/model/Contact.dart';
@@ -33,7 +34,6 @@ class ContactsScreen extends StatelessWidget {
               IconButton(
                 icon: Icon(Icons.search),
                 onPressed: () {
-                  
                   showSearch(
                     context: context,
                     delegate: ContactSearchDelegate(manager: manager)
@@ -46,17 +46,10 @@ class ContactsScreen extends StatelessWidget {
             ]
           ),
           drawer: AppDrawer(),
-          body: StreamBuilder<List<Contact>>(
+          body: ContactListBuilder(
             stream: manager.contactListView,
-            builder: (BuildContext context, AsyncSnapshot<List<Contact>> snapshot) {
-              switch(snapshot.connectionState) {
-                case ConnectionState.none:
-                case ConnectionState.waiting:
-                case ConnectionState.active:
-                  return Center(child: CircularProgressIndicator());
-                case ConnectionState.done:
-                  List<Contact> contacts = snapshot.data;
-                  return ListView.separated(
+            builder: (context, contacts) {
+              return ListView.separated(
                     itemCount: contacts?.length ?? 0,
                     itemBuilder: (BuildContext context, int index) {
                       Contact _contact = contacts[index];
@@ -68,9 +61,8 @@ class ContactsScreen extends StatelessWidget {
                     },
                     separatorBuilder: (context, index) => Divider(),
                   );
-              }
             }
-          ),
+          )
     );
   }
 }

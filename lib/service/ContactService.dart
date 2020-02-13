@@ -11,9 +11,14 @@ class ContactService {
 
     String content = response.body;
     List collection = json.decode(content);
-    List<Contact> _contacts =
-      collection.map((json) => Contact.fromJson(json)).toList();
-    return _contacts;
+    Iterable<Contact>  _contacts =
+      collection.map((_) => Contact.fromJson(_));
+    if (query != null && query.isNotEmpty) {
+      _contacts = _contacts.where(
+        (contact) => contact.name.toLowerCase().contains(query),
+      );
+    }  
+    return _contacts.toList();
   }
 
 }
