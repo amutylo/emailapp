@@ -31,7 +31,6 @@ class ContactsScreen extends StatelessWidget {
           ),
           drawer: AppDrawer(),
           body: ContactListBuilder(
-            stream: manager.contactListView,
             builder: (context, contacts) {
               return ListView.separated(
                     itemCount: contacts?.length ?? 0,

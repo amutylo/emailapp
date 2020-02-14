@@ -9,7 +9,8 @@ class ContactListBuilder extends StatelessWidget {
 
   final Function builder;
 
-  const ContactListBuilder(this.builder);
+  const ContactListBuilder({Key key, this.builder}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
