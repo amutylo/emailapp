@@ -9,7 +9,7 @@ class Provider<T> extends InheritedWidget {
 
   static ContactManager of<T>(BuildContext context) {
     final type = _typeOf<Provider<T>>();
-    return (context.dependOnInheritedWidgetOfExactType<Provider<T>>() as Provider).data;
+    return (context.dependOnInheritedWidgetOfExactType<Provider<T>>(aspect: {type}) as Provider).data;
   }
 
   static Type _typeOf<T>() => T;
