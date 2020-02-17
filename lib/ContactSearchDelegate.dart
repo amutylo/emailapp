@@ -32,7 +32,7 @@ class ContactSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-    ContactManager manager = Provider.of(context);
+    ContactManager manager = Provider.of<ContactManager>(context);
 
     if (query.length < 3) {
       return Center(
